@@ -1,0 +1,27 @@
+# --- Secrets / local config (NEVER commit) ---
+.env
+.env.*
+config.local.php
+config.local*.php
+local_conf.php
+local_conf*.php
+*.key
+*.pem
+*.crt
+
+# --- CS-Cart runtime / cache / logs ---
+var/
+cache/
+logs/
+*.log
+
+# --- Uploads / user content / generated files ---
+images/
+files/
+attachments/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
