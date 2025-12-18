@@ -1,0 +1,355 @@
+/*******************************************************************************************
+*   ___  _          ______                     _ _                _                        *
+*  / _ \| |         | ___ \                   | (_)              | |              © 2023   *
+* / /_\ | | _____  _| |_/ /_ __ __ _ _ __   __| |_ _ __   __ _   | |_ ___  __ _ _ __ ___   *
+* |  _  | |/ _ \ \/ / ___ \ '__/ _` | '_ \ / _` | | '_ \ / _` |  | __/ _ \/ _` | '_ ` _ \  *
+* | | | | |  __/>  <| |_/ / | | (_| | | | | (_| | | | | | (_| |  | ||  __/ (_| | | | | | | *
+* \_| |_/_|\___/_/\_\____/|_|  \__,_|_| |_|\__,_|_|_| |_|\__, |  \___\___|\__,_|_| |_| |_| *
+*                                                         __/ |                            *
+*                                                        |___/                             *
+* ---------------------------------------------------------------------------------------- *
+* This is commercial software, only users who have purchased a valid license and accept    *
+* to the terms of the License Agreement can install and use this program.                  *
+* ---------------------------------------------------------------------------------------- *
+* website: https://cs-cart.alexbranding.com                                                *
+*   email: info@alexbranding.com                                                           *
+*******************************************************************************************/
+
+.ut2-blog__recent-posts--img, .ut2-blog__recent-posts-scroller--img {
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: optimizeQuality;
+
+	.ut2-blog__date {
+		position: absolute;
+		padding: 3px 5px;
+		font-size: calc(~'var(--font-size-small) - 2px');
+		color: white;
+		background: rgba(0, 0, 0, 0.3);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		bottom: 0;
+
+		.ut2_round(@round: 12px) when not (@abt__ut2_general_use_rounding = none) {
+			margin: 10px;
+			border-radius: @round;
+		}
+		.ut2_round();
+	}
+}
+
+.ut2-blog {
+	&__item {
+		margin: @pdi*2 0;
+		.clearfix();
+	}
+	&__title-block {
+		display: block;
+	}
+	&__post-title {
+		margin-top: -5px;
+		margin-bottom: @pdi/2;
+	}
+	&__img-block {
+		float: left;
+		margin-right: @pdi*2;
+	}
+	&__description {
+		display: inline-block;
+		.xcalc(380px);
+
+		.ty-wysiwyg-content * {
+			font-size: var(--font-size-medium);
+			color: lighten(@font, 15%);
+		}
+	}
+	&__read-more a {
+		font-size: var(--font-size-medium);
+		text-decoration: underline;
+	}
+	@media (max-width: 1024px) {
+		&__item {
+			margin: @pdi 0;
+		}
+		&__img-block {
+			width: 100%;
+			margin-right: 0;
+			margin-bottom: @pd;
+		}
+		&__description {
+			width: 100%;
+			padding-right: 0;
+		}
+	}
+	@media (max-width: 576px) {
+		&__img-block img {
+			width: 100%;
+		}
+	}
+}
+
+.ty-blog-grid {
+	max-width: 900px;
+
+	@media (min-width: 900px) {
+		&[class*="span"]:not(:only-child) {
+			width: calc(~'100% - '(300px + @pdi*2));
+			margin-right: @pdi*2;
+		}
+
+		~ [class*="span"] {
+			position: sticky;
+			top: 100px;
+			bottom: 0;
+			margin: 5px 0 0 0;
+			min-width: 300px;
+			float: right;
+		}
+	}
+	@media (max-width: 899px) {
+		min-width: 100%;
+		~ [class*="span"] {
+			min-width: 100%;
+			margin-left: 0;
+		}
+	}
+
+	.ty-mainbox-container {
+		background: @general_bg_color;
+		margin-bottom: @pdf;
+
+		> .ty-mainbox-title {
+			margin: @pdi 0 0;
+			font-size: calc(~'var(--font-size-extra-big) + 8px');
+
+			.uppercase() when (@abt__ut2_general_use_titles_uppercase = true) {
+				font-size: var(--font-size-extra-big);
+				text-transform: uppercase;
+			}
+			.uppercase();
+		}
+	}
+
+	.ty-mainbox-body > .ty-wysiwyg-content {
+
+		:where(p, a, div, ul, li):not(:where(.ut2-gl__item, .ty-template-small__item, .ty-scroller-list, .cm-block-loader)) {
+			font-size: calc(~'var(--font-size-medium) + 2px');
+		}
+
+		.uppercase() when not (@abt__ut2_general_use_titles_uppercase = true) {
+			h1 {
+				font-size: calc(~'var(--font-size-extra-big) + 8px');
+			}
+			h2 {
+				font-size: var(--font-size-extra-big);
+			}
+			h3, h4 {
+				font-size: var(--font-size-big);
+			}
+			h5, h6 {
+				font-size: calc(~'var(--font-size-medium) + 2px');
+				font-weight: bold;
+			}
+		}
+		.uppercase();
+
+		.cm-block-loader {
+			margin: @pd 0;
+
+			:where(p, a, div:not([class*="reviews-stars"]):not([class*="icon"]), ul, li) {
+				font-size: unset;
+			}
+		}
+
+		.ut2-blog__img-block {
+			display: block;
+			float: none;
+			margin: @pdi*2 0;
+		}
+		.ut2-blog__date {
+			font-size: var(--font-size-normal);
+		}
+	}
+	.ut2-blog__date {
+		display: inline-flex;
+		align-items: center;
+		padding: 3px 10px;
+		height: 24px;
+		margin: @pd/2 0;
+		background: lighten(@base, 3%);
+		color: @lighten-font;
+		font-size: var(--font-size-small);
+
+		i {
+			font-size: 16px;
+			margin-right: 5px;
+		}
+
+		.ut2_round(@round: 12px) when not (@abt__ut2_general_use_rounding = none) {
+			border-radius: @round;
+		}
+		.ut2_round();
+	}
+	.discussion-block {
+		padding-top: @pdi;
+		margin-top: @pdi*2;
+		border-top: 1px solid @base;
+	}
+}
+
+.ut2-blog {
+	&__recent-posts {
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 -5px;
+		@media (min-width: 1024px) {
+			padding-left: 40%;
+		}
+
+		&--img {
+			position: relative;
+			margin-bottom: 10px;
+			min-height: 150px;
+			width: 100%;
+			background-size: cover;
+			aspect-ratio: 4/2.65;
+
+			&.cover {
+				background-position: center center;
+				&.no-image {
+					background: rgba(255, 255, 255, 0.5) url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDMxLjA1OCAzMS4wNTgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMxLjA1OCAzMS4wNTg7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4Ij4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMzAuMTcxLDMxLjA1OEgwLjg4N0MwLjM5NywzMS4wNTgsMCwzMC42NjEsMCwzMC4xNzFWMC44ODhDMCwwLjM5OCwwLjM5NywwLDAuODg3LDBoMjkuMjg0ICAgIGMwLjQ5LDAsMC44ODcsMC4zOTgsMC44ODcsMC44ODh2MjkuMjgzQzMxLjA1OCwzMC42NjEsMzAuNjYxLDMxLjA1OCwzMC4xNzEsMzEuMDU4eiBNMS43NzUsMjkuMjg1aDI3LjUwOVYxLjc3NUgxLjc3NVYyOS4yODV6IiBmaWxsPSIjOTk5OTk5Ii8+Cgk8L2c+Cgk8Zz4KCQk8cGF0aCBkPSJNMC44ODcsMzEuMDU4Yy0wLjIxMSwwLTAuNDIzLTAuMDc0LTAuNTkzLTAuMjI3Yy0wLjM2NC0wLjMyNy0wLjM5NC0wLjg4OS0wLjA2Ny0xLjI1M2w4Ljg3NC05Ljg4ICAgIGMwLjE2LTAuMTc4LDAuMzg0LTAuMjgzLDAuNjIzLTAuMjkzYzAuMjMzLTAuMDEyLDAuNDcxLDAuMDc2LDAuNjQ1LDAuMjM4bDIuMzA4LDIuMTY2bDYuOTkxLTYuOTEyICAgIGMwLjMzNS0wLjMzLDAuODctMC4zNDIsMS4yMTgtMC4wMjdsOS44OCw4LjkwM2MwLjE4NywwLjE2OCwwLjI5MywwLjQwNywwLjI5MywwLjY1OXY1LjczOGMwLDAuNDktMC4zOTcsMC44ODctMC44ODcsMC44ODdoLTkuODggICAgYy0wLjIyNiwwLTAuNDQyLTAuMDg2LTAuNjA3LTAuMjRMOS44MTUsMjEuNTZsLTguMjY4LDkuMjA0QzEuMzcyLDMwLjk1OSwxLjEzLDMxLjA1OCwwLjg4NywzMS4wNTh6IE0yMC42NDIsMjkuMjg1aDguNjQydi00LjQ1NyAgICBsLTguOTY0LTguMDc4bC02LjM0OCw2LjI3NUwyMC42NDIsMjkuMjg1eiIgZmlsbD0iIzk5OTk5OSIvPgoJPC9nPgoJPGc+CgkJPHBhdGggZD0iTTEwLjAyOCwxNS43OTZjLTIuMzQ5LDAtNC4yNi0xLjkxMi00LjI2LTQuMjZjMC0yLjM0OSwxLjkxMS00LjI2LDQuMjYtNC4yNiAgICBzNC4yNTksMS45MTEsNC4yNTksNC4yNkMxNC4yODcsMTMuODg0LDEyLjM3NiwxNS43OTYsMTAuMDI4LDE1Ljc5NnogTTEwLjAyOCw5LjA1MmMtMS4zNywwLTIuNDg1LDEuMTE0LTIuNDg1LDIuNDg0ICAgIGMwLDEuMzY5LDEuMTE1LDIuNDg0LDIuNDg1LDIuNDg0YzEuMzcsMCwyLjQ4NC0xLjExNSwyLjQ4NC0yLjQ4NEMxMi41MTIsMTAuMTY2LDExLjM5Nyw5LjA1MiwxMC4wMjgsOS4wNTJ6IiBmaWxsPSIjOTk5OTk5Ii8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==) no-repeat center;
+					background-size: inherit !important;
+					.box-shadow(inset 0 0 0 1px rgba(255, 255, 255, 0.1));
+				}
+			}
+		}
+		&--item {
+			padding: 5px;
+			min-width: 20%;
+			max-width: 33.3333%;
+			flex: 1 0 auto;
+
+			@media (max-width: 734px) {
+				max-width: 50%;
+			}
+
+			&.first {
+				@media (min-width: 1024px) {
+					position: absolute;
+					left: 0;
+					width: 40%;
+					max-width: none;
+					padding-right: @pd;
+					padding-left: 0;
+				}
+				.ut2-blog__recent-posts--img {
+					@media (min-width: 1024px) {
+						aspect-ratio: 1.215;
+					}
+					@media (min-width: 1024px) and (max-width: 1365px) {
+						min-height: 380px;
+					}
+				}
+				.ut2-blog__recent-posts--title {
+					@media (min-width: 1366px) {
+						font-size: 18px;
+					}
+				}
+			}
+			&:hover {
+				.ut2-blog__recent-posts--img {
+					.ut2-hover-effect();
+				}
+			}
+		}
+		&-scroller--img {
+			a:before {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				transition: box-shadow 150ms;
+			}
+			&:hover a:before {
+				.ut2-hover-effect();
+			}
+		}
+		&--title {
+			color: @font;
+			font-size: var(--font-size-normal);
+			margin-bottom: 10px;
+			padding-right: 10px;
+			min-height: 42px;
+			width: 100%;
+			hyphens: auto;
+			.ut2_line_clamp(3);
+		}
+		@media (max-width: 576px) {
+			&--item {
+				min-width: 50%;
+			}
+		}
+		@media (max-width: 320px) {
+			&--item {
+				min-width: 100%;
+			}
+		}
+		@media (max-width: 992px) {
+			flex-direction: row;
+			height: auto;
+		}
+	}
+	&__button.ty-btn {
+		flex-direction: row-reverse;
+
+		span + span:not(.ty-icon) {
+			margin-left: 0;
+			margin-right: 5px;
+		}
+		@media (max-width: 576px) {
+			display: flex;
+			margin: 0 auto;
+		}
+	}
+
+	&__recent-posts-scroller {
+		min-width: 100%;
+		margin: 0 -5px;
+
+		&--item {
+			flex: 1;
+			padding: 0 5px;
+			width: 100%;
+
+			a {
+				color: @font;
+				font-size: var(--font-size-normal);
+			}
+			&:hover .ut2-blog__recent-posts--img {
+				box-shadow: none;
+			}
+		}
+		&--img {
+			position: relative;
+			background: @general_bg_color;
+			aspect-ratio: 4 / 2.65;
+
+			~ a {
+				display: block;
+				padding: @pd/2;
+			}
+		}
+		.no-image {
+			min-height: inherit;
+			height: 0;
+			padding-bottom: 66.9333%;
+		}
+	}
+}
+
+.container-fluid-row:not([class*="fill"]) .no-image {
+	background-color: lighten(@base, 3%);
+}
+
+.ty-blog-sidebox__item {
+	margin-bottom: 10px;
+}

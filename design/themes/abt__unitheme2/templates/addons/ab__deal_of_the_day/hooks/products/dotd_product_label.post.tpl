@@ -1,0 +1,1 @@
+{include file="addons/ab__deal_of_the_day/components/promotion_label.tpl"}

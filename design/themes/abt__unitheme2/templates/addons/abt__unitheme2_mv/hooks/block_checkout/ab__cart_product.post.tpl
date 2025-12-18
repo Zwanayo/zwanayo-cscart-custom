@@ -1,0 +1,1 @@
+<div class="ab-checkout-vendor"><i></i>{__("vendor")}:<b>{$product.company_name}</b></div>

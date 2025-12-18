@@ -1,0 +1,744 @@
+/*******************************************************************************************
+*   ___  _          ______                     _ _                _                        *
+*  / _ \| |         | ___ \                   | (_)              | |              © 2023   *
+* / /_\ | | _____  _| |_/ /_ __ __ _ _ __   __| |_ _ __   __ _   | |_ ___  __ _ _ __ ___   *
+* |  _  | |/ _ \ \/ / ___ \ '__/ _` | '_ \ / _` | | '_ \ / _` |  | __/ _ \/ _` | '_ ` _ \  *
+* | | | | |  __/>  <| |_/ / | | (_| | | | | (_| | | | | | (_| |  | ||  __/ (_| | | | | | | *
+* \_| |_/_|\___/_/\_\____/|_|  \__,_|_| |_|\__,_|_|_| |_|\__, |  \___\___|\__,_|_| |_| |_| *
+*                                                         __/ |                            *
+*                                                        |___/                             *
+* ---------------------------------------------------------------------------------------- *
+* This is commercial software, only users who have purchased a valid license and accept    *
+* to the terms of the License Agreement can install and use this program.                  *
+* ---------------------------------------------------------------------------------------- *
+* website: https://cs-cart.alexbranding.com                                                *
+*   email: info@alexbranding.com                                                           *
+*******************************************************************************************/
+.b--ship-way, .b--pay-way {
+    display: block;
+    width: 100%;
+    line-height: normal;
+    letter-spacing: normal;
+    margin-top: 34px;
+    margin-bottom: 34px;
+
+    @media (min-width: 768px) {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+    }
+
+    .litecheckout__container .litecheckout__group~& {
+        margin-top: 0;
+    }
+}
+
+.b--ship-way {
+    .litecheckout__container {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .litecheckout__step {
+        display: block;
+        width: auto;
+        max-width: none;
+    }
+    #shipping_rates_list.litecheckout__shippings {
+        display: block;
+        width: auto;
+        max-width: none;
+        transition: none;
+    }
+    .litecheckout__shippings>.litecheckout__group {
+        display: block;
+        width: auto;
+        max-width: none;
+
+        &+.litecheckout__group {
+            margin-top: 20px;
+        }
+    }
+}
+
+.b--ship-way__select,
+.b--pay-way__select {
+    position: relative;
+    margin: 0.5rem 0;
+
+    &:hover {
+
+        .b--ship-way__opted,
+        .b--pay-way__opted {
+            border-color: @checkout_selected_input_border;
+            box-shadow: 0 0 0 3px @checkout_selected_control_background;
+        }
+    }
+    .ty-no-image {
+        width: 80px;
+        height: 40px;
+    }
+}
+
+.b--ship-way__opted, .b--pay-way__opted {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: @checkout-input-min-height;
+    background: white;
+    border: 1px solid @checkout_input_border;
+    position: relative;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+}
+.b--ship-way__opted__logo, .b--pay-way__opted__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 40px;
+    margin: 5px -2px 5px 10px;
+}
+.b--ship-way__opted__text, .b--pay-way__opted__text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 40px 0 12px;
+}
+
+.b--ship-way__opted__text__title,
+.b--pay-way__opted__text__title {
+    font-family: @body_font;
+    font-size: var(--font-size-normal);
+    line-height: 1.2;
+    color: @checkout_input_text;
+    font-style: @body_font_style;
+    font-weight: @body_font_weight;
+}
+
+.b--ship-way__opted__icon,
+.b--pay-way__opted__icon {
+    font-size: 30px;
+    line-height: @checkout-input-min-height;
+    text-align: center;
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translate(0, -50%);
+    margin-top: 1px;
+}
+
+input#open-ship-way-list-dropdown,
+input#open-pay-way-list-dropdown {
+    display: none;
+}
+
+.b--ship-way__list,
+.b--pay-way__list {
+    display: block;
+    width: auto;
+    max-width: none;
+
+    @media (min-width: 768px) {
+        &.litecheckout__group {
+            margin: 0 -0.3rem;
+            min-width: calc(~'100% + 0.6rem');
+        }
+    }
+    .b--ship-way_mode_select .b--ship-way__select &,
+    .b--pay-way_mode_select .b--pay-way__select & {
+        background: white;
+        border: 1px solid white;
+        padding: 9px 0;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        position: absolute;
+        z-index: 90;
+        top: 100%;
+        left: 0;
+        display: none;
+        border-radius: var(--border-radius);
+    }
+
+    input#open-ship-way-list-dropdown:checked+&,
+    input#open-pay-way-list-dropdown:checked+& {
+        display: block;
+    }
+}
+
+.b--ship-way__unit,
+.b--pay-way__unit {
+    position: relative;
+    display: block;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    border: 1px dashed @base5;
+    background: @checkout_control_background;
+    transition: all .3s ease;
+    border-radius: var(--border-radius);
+
+    .b--ship-way_mode_select &,
+    .b--pay-way_mode_select & {
+        border: 0 none;
+        background: none;
+        border-radius: 0;
+    }
+
+    &:not(:first-child) {
+        margin-top: 16px;
+
+        .b--ship-way_mode_select &,
+        .b--pay-way_mode_select & {
+            margin-top: 0;
+        }
+    }
+
+    &.b--ship-way__unit_active,
+    &.b--pay-way__unit_active {
+
+        .b--ship-way_mode_radio-list &,
+        .b--pay-way_mode_radio-list & {
+            border-color: @checkout_selected_control_border;
+            box-shadow: 0 0 0 3px @checkout_selected_control_background, inset 0 0 0 1px @checkout_selected_control_border;
+            border-style: solid;
+
+            .litecheckout__shipping-method__radio:checked+label.b--ship-way__unit__label,
+            .litecheckout__shipping-method__radio:checked+label.b--pay-way__unit__label {
+                border: 0 none;
+                box-shadow: inset 0 0 0 1px @checkout_selected_control_border;
+                background-color: @checkout_selected_control_background;
+
+                .b--ship-way__unit__label__text__pseudo-radio,
+                .b--pay-way__unit__label__text__pseudo-radio {
+                    border-color: @checkout_selected_control_border;
+
+                    &::after {
+                        background-color: @checkout_selected_control_border;
+                    }
+                }
+            }
+
+            label.b--ship-way__unit__label,
+            label.b--pay-way__unit__label {
+                background-color: @checkout_selected_control_background;
+                box-shadow: inset 0 0 0 1px @checkout_selected_control_border;
+            }
+        }
+    }
+
+    &:hover {
+        border-style: solid;
+        border-color: fade(@checkout_selected_control_border, 60%);
+        
+        .b--ship-way__unit__label__text__pseudo-radio::after, .b--pay-way__unit__label__text__pseudo-radio::after {
+            background: fade(@checkout_selected_control_border, 60%);
+        }
+    }
+
+    .litecheckout__shipping-method__radio:checked+label.b--ship-way__unit__label,
+    .litecheckout__shipping-method__radio:checked+label.b--pay-way__unit__label {
+        border: 0 none;
+        box-shadow: none;
+        background: none;
+    }
+}
+
+.b--ship-way__unit label.b--ship-way__unit__label,
+.b--pay-way__unit label.b--pay-way__unit__label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    position: relative;
+    cursor: pointer;
+    overflow: visible;
+    padding: 0;
+    min-height: 74px;
+    border: 0 none;
+    box-shadow: none;
+    background: none;
+    border-radius: var(--border-radius);
+
+    .b--ship-way_mode_radio-list &,
+    .b--pay-way_mode_radio-list & {
+        @media (max-width: 767px) {
+            min-height: 60px;
+        }
+
+        @media (max-width: 360px) {
+            display: block;
+            min-height: 0;
+            padding: 14px 60px 14px 12px;
+        }
+    }
+
+    .b--ship-way_mode_select &,
+    .b--pay-way_mode_select & {
+        min-height: 40px;
+        border-radius: 0;
+
+        &:hover {
+            background: lighten(@base, 3%);
+        }
+    }
+}
+
+.b--ship-way__unit__label__logo,
+.b--pay-way__unit__label__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 40px;
+    margin-left: 6px;
+    
+    @media (max-width: 767px) {
+        margin-left: 10px;
+    }
+
+    .b--ship-way_mode_radio-list &,
+    .b--pay-way_mode_radio-list & {  
+        width: 80px;
+        min-width: 80px;
+        max-width: 80px;
+        margin-left: 18px;
+    }
+
+    .b--ship-way_mode_select &,
+    .b--pay-way_mode_select & {
+
+    }
+
+    img {
+        .b--ship-way_mode_radio-list &,
+        .b--pay-way_mode_radio-list & {
+            max-height: 50px;
+            width: auto;
+
+            @media (max-width: 360px) {
+                max-width: 80px;
+                margin-left: 0;
+            }
+        }
+
+        .b--ship-way_mode_select &,
+        .b--pay-way_mode_select & {
+
+        }
+    }
+}
+
+.b--ship-way__unit__label__text,
+.b--pay-way__unit__label__text {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    .b--ship-way_mode_radio-list &,
+    .b--pay-way_mode_radio-list & {
+        padding: 20px 60px 20px 16px;
+
+        @media (max-width: 767px) {
+            padding-top: 14px;
+            padding-bottom: 14px;
+        }
+
+        @media (max-width: 360px) {
+            display: block;
+            padding: 0;
+        }
+    }
+
+    .b--ship-way_mode_select &,
+    .b--pay-way_mode_select & {
+        padding: 8px 40px 8px 12px;
+    }
+
+    .litecheckout__shipping-method__title,
+    .litecheckout__shipping-method__status,
+    .litecheckout__shipping-method__delivery-time {
+        margin: 0;
+        padding: 0;
+        max-width: none;
+        text-align: left;
+        white-space: normal;
+    }
+
+    .litecheckout__shipping-method__status,
+    .litecheckout__shipping-method__delivery-time {
+        overflow: visible;
+        font-family: @body_font;
+        font-size: var(--font-size-normal);
+        line-height: 22px;
+        color: @checkout_control_description;
+        font-style: @body_font_style;
+        font-weight: @body_font_weight;
+
+        @media (max-width: 767px) {
+            line-height: 20px;
+        }
+    }
+
+    .litecheckout__shipping-method__title {
+
+        .b--ship-way_mode_radio-list &,
+        .b--pay-way_mode_radio-list & {
+            font-size: var(--font-size-medium);
+            line-height: 24px;
+            color: @font;
+            font-weight: 700;
+
+            @media (max-width: 767px) {
+                line-height: 1.2;
+            }
+        }
+
+        .b--ship-way_mode_select &,
+        .b--pay-way_mode_select & {
+            font-family: @body_font;
+            font-size: var(--font-size-normal);
+            line-height: 1.2;
+            color: @checkout_input_text;
+            font-style: @body_font_style;
+            font-weight: @body_font_weight;
+        }
+    }
+}
+
+.b--ship-way__unit__label__text__beside-title,
+.b--pay-way__unit__label__text__beside-title {
+
+    .b--ship-way_mode_select &,
+    .b--pay-way_mode_select & {
+        display: none;
+    }
+}
+
+.b--ship-way__unit__label__text__pseudo-radio,
+.b--pay-way__unit__label__text__pseudo-radio {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: @checkout_control_background;
+    border: 1px solid @checkout_input_border;
+    padding: 3px;
+    position: absolute;
+    right: 23px;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    @media (max-width: 767px) {
+        right: 16px;
+    }
+
+    @media (max-width: 360px) {
+        right: 12px;
+    }
+
+    .b--ship-way_mode_select &,
+    .b--pay-way_mode_select & {
+        display: none;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: @checkout_control_background;
+        border-radius: 50%;
+    }
+}
+
+.b--ship-way__unit__details,
+.b--pay-way__unit__details {
+    position: relative;
+    background: none;
+    
+    .ut2_round(@round: 6px) when (@abt__ut2_general_use_rounding = little) {
+		border-radius: 0 0 @round @round;
+	}
+	.ut2_round(@round: 8px) when (@abt__ut2_general_use_rounding = full) {
+		border-radius: 0 0 @round @round;
+	}
+	.ut2_round();
+}
+
+.b--ship-way__unit__details {
+    padding: 0 16px;
+
+    @media (max-width: 767px) {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+.b--pay-way__unit__details {
+    padding: 0 16px;
+
+    @media (max-width: 360px) {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+}
+
+.b--ship-way__unit__details .b--ship-way__unit__details__in,
+.b--pay-way__unit__details .b--pay-way__unit__details__in {
+
+    &::before,
+    &::after {
+        content: "";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+.b--ship-way__unit__details .b--ship-way__unit__details__in {
+    &>p[style] {
+        padding: 0;
+        margin: 18px 0;
+
+        @media (max-width: 767px) {
+            margin-top: 14px;
+            margin-bottom: 14px;
+        }
+    }
+
+    &>.litecheckout__group,
+    &>.litecheckout__container,
+    &>.pickup--map-list,
+    &>.pickup--list {
+        &>p[style] {
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    &>.litecheckout__group,
+    &>.litecheckout__container {
+        width: auto;
+        max-width: none;
+        @media (min-width: 768px) {
+            margin: 18px (-0.3rem);
+        }
+        @media (max-width: 767px) {
+            margin-top: 14px;
+            margin-bottom: 14px;
+        }
+
+        &>p[style] {
+            margin-left: 0.3rem;
+            margin-right: 0.3rem;
+        }
+    }
+
+    &>.pickup--map-list,
+    &>.pickup--list {
+        width: auto;
+        margin: 18px 0;
+        box-shadow: none;
+        border: 1px solid @checkout_control_border;
+        background-color: @checkout_control_background;
+        border-radius: var(--border-radius);
+
+        @media (max-width: 767px) {
+            margin-top: 14px;
+            margin-bottom: 14px;
+            padding-left: 0;
+            padding-right: 0;
+            padding-bottom: 0;
+            border-radius: 0;
+            border: 0 none;
+        }
+
+        .pickup__map-wrapper {
+            .pickup__map-container {
+                @media (max-width: 767px) {
+                    border: 1px solid @checkout_control_border;
+                    border-radius: var(--border-radius);
+                }
+                @media (max-width: 360px) {
+                    flex-basis: 50vh;
+                    height: 50vh;
+                }
+            }
+        }
+
+        .pickup__offices-wrapper {
+            background-color: transparent;
+        }
+    }
+
+    &>.ty-wysiwyg-content {
+        margin: 18px 0;
+
+        @media (max-width: 767px) {
+            margin-top: 14px;
+            margin-bottom: 14px;
+        }
+    }
+}
+
+.b--pay-way__unit__details .b--pay-way__unit__details__in {
+    &>.litecheckout__payment-method.litecheckout__group {
+        padding-top: @pd;
+        padding-bottom: @pd/2;
+        min-width: 100%;
+        margin: 0;
+    }
+}
+
+.b--ship-way__select-details .b--ship-way__select-details__in {
+    @media (min-width: 768px) {
+        margin-left: -0.3rem;
+        margin-right: -0.3rem;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+
+    &>p[style] {
+        padding: 0;
+        margin: 1rem 0.3rem 0;
+    }
+
+    &>.litecheckout__group,
+    &>.litecheckout__container {
+
+        &>p[style] {
+            padding: 0;
+            margin: 0.5rem 0.3rem 0;
+        }
+    }
+
+    &>.litecheckout__item {
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+        margin-bottom: 0;
+    }
+
+    &>.pickup--map-list,
+    &>.pickup--list {
+        width: auto;
+        margin: 1rem 0.3rem 0;
+        border: 1px solid @checkout_control_border;
+        background-color: @checkout_control_background;
+        border-radius: var(--border-radius);
+
+        @media (max-width: 767px) {
+            padding-left: 0;
+            padding-right: 0;
+            padding-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+            border-radius: 0;
+            border: 0 none;
+        }
+
+        .pickup__map-wrapper {
+            .pickup__map-container {
+                @media (max-width: 767px) {
+                    border: 1px solid @checkout_control_border;
+                    border-radius: var(--border-radius);
+                }
+
+                @media (max-width: 360px) {
+                    flex-basis: 50vh;
+                    height: 50vh;
+                }
+            }
+        }
+
+        .pickup__offices-wrapper {
+            background-color: transparent;
+        }
+    }
+}
+
+.b--ship-way__select-details__description {
+    margin: 1rem 0 0;
+}
+
+.b--pay-way__select-details .b--pay-way__select-details__in {
+    @media (min-width: 768px) {
+        margin-left: -0.3rem;
+        margin-right: -0.3rem;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+
+    &>.litecheckout__payment-method {
+        padding-top: 1rem;
+    }
+}
+
+/* [BEGIN] typo tweak */
+.b--ship-way, .b--pay-way {
+
+    .b--ship-way__unit__details__in>.ty-wysiwyg-content,
+    .b--ship-way__select-details__description,
+    .b--pay-way__unit__details__in,
+    .b--pay-way__select-details__in {
+
+        p,
+        li {
+            font-family: @body_font;
+            font-size: @body_font_size;
+            line-height: 1.4;
+            color: @font;
+            font-style: @body_font_style;
+            font-weight: @body_font_weight;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,
+        ol {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        li+li {
+            margin-top: 4px;
+        }
+
+        p+p,
+        p+ul,
+        p+ol,
+        ul+p,
+        ul+ol,
+        ul+ul,
+        ol+p,
+        ol+ul,
+        ol+ol {
+            margin-top: 10px;
+        }
+    }
+}
+
+.litecheckout__payment-methods > .litecheckout__group > :not(.litecheckout__group):not(.litecheckout__container) {
+    margin: 0.5rem 0;
+}
+/* [END] typo tweak */

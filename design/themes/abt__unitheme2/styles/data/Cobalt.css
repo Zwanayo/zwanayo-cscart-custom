@@ -1,0 +1,6 @@
+@media (min-width: 769px) {
+    .top-menu-grid .ut2-h__menu .ty-menu__item .ty-menu__item-link img.ut2-mwi-icon {
+        -webkit-filter: brightness(10) opacity(80%);
+        filter: brightness(10) opacity(70%);
+    }
+}

@@ -1,0 +1,22 @@
+msgid "Verify Token"
+msgstr "Verify Token"
+
+msgid "WhatsApp Account ID"
+msgstr "WhatsApp Account ID"
+
+msgid "WhatsApp Access Token"
+msgstr "WhatsApp Access Token"
+
+msgid "WhatsApp App Secret"
+msgstr "WhatsApp App Secret"
+
+msgid "Zwa Chat Integration"
+msgstr "Zwa Chat Integration"
+
+zwa_chat.debug_signature = Debug signature verification
+zwa_chat.debug_signature_hint = When enabled, logs raw payload + expected/received signatures
+
+zwa_chat.node_bot_url = Chatbot Service URL
+zwa_chat.node_bot_url_hint = Full URL to your Node.js bot’s webhook endpoint
+zwa_chat.node_bot_api_key = Chatbot API Key
+zwa_chat.node_bot_api_key_hint = Secret key for authenticating with your Node.js bot

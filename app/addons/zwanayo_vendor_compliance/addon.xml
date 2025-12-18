@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+  <id>zwanayo_vendor_compliance</id>
+  <version>1.0</version>
+  <priority>1000</priority>
+  <default_language>fr</default_language>
+  <supplier>Zwanayo</supplier>
+  <name>Zwanayo Vendor Compliance</name>
+  <description>Vendor contract &amp; NUI compliance</description>
+</addon>

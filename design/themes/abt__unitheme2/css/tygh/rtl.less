@@ -1,0 +1,270 @@
+/*******************************************************************************************
+*   ___  _          ______                     _ _                _                        *
+*  / _ \| |         | ___ \                   | (_)              | |              © 2023   *
+* / /_\ | | _____  _| |_/ /_ __ __ _ _ __   __| |_ _ __   __ _   | |_ ___  __ _ _ __ ___   *
+* |  _  | |/ _ \ \/ / ___ \ '__/ _` | '_ \ / _` | | '_ \ / _` |  | __/ _ \/ _` | '_ ` _ \  *
+* | | | | |  __/>  <| |_/ / | | (_| | | | | (_| | | | | | (_| |  | ||  __/ (_| | | | | | | *
+* \_| |_/_|\___/_/\_\____/|_|  \__,_|_| |_|\__,_|_|_| |_|\__, |  \___\___|\__,_|_| |_| |_| *
+*                                                         __/ |                            *
+*                                                        |___/                             *
+* ---------------------------------------------------------------------------------------- *
+* This is commercial software, only users who have purchased a valid license and accept    *
+* to the terms of the License Agreement can install and use this program.                  *
+* ---------------------------------------------------------------------------------------- *
+* website: https://cs-cart.alexbranding.com                                                *
+*   email: info@alexbranding.com                                                           *
+*******************************************************************************************/
+
+html[dir="rtl"] {
+    .ui-widget-content.ui-dialog:not(.abt__ut2_right-panel) {
+        left: inherit !important;
+    }
+    .ty-icon-right-circle:before {
+        content: "\e020";
+    }
+    .ty-icon-left-circle:before {
+        content: "\e01f";
+    }
+    .ty-horizontal-filters-content-to-right {
+        right: auto;
+        left: 0;
+    }
+    .ty-horizontal-product-filters-dropdown a .ty-icon-cancel-circle {
+        padding-right: 5px;
+    }
+    .ty-cart-items__list-item-desc p span {
+        float: left;
+    }
+    .ty-pagination__text-arrow:before {
+        content: "→";
+    }
+    .ty-pagination__next .ty-pagination__text-arrow:before {
+        content: "←";
+    }
+    .ty-icon-right-dir:before {
+        content: "\e003";
+    }
+    .ty-pagination__right-arrow .ty-pagination__text-arrow:before {
+        content: "←";
+    }
+    @media (max-width: 979px) {
+        .ty-pagination .ty-pagination__item.ty-pagination__prev .ty-icon {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+        .ty-pagination .ty-pagination__item.ty-pagination__next .ty-icon {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+    }
+    @media (max-width: 899px) {
+        .top-menu-grid-vetrtical .second-lvl > .ty-menu__item-toggle i:after {
+            -webkit-transform: translateX(calc(~'-1px + 50%'));
+            transform: translateX(calc(~'-1px + 50%'));
+        }
+        .ut2-menu-vetrtical .first-lvl > .ty-menu__item-toggle i {
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+    }
+
+    .ty-price-slider {
+        .ty-range-slider__num {
+            --ty-force-range-slider-num-end: -10px;
+        }
+
+        &__inputs {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+
+            > bdi:last-of-type {
+                margin-left: 0;
+            }
+        }
+        &__bidi-container {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        &__input-text {
+            float: left;
+        }
+    }
+    .ty-order-info__profile-field-item {
+        &.b-phone,
+        &.s-phone {
+            direction: rtl;
+        }
+    }
+    .ty-control-group.ty-profile-field__item {
+        &.ty-billing-phone input,
+        &.ty-billing-address-line2 input,
+        &.ty-shipping-phone input,
+        &.ty-shipping-address-line2 input {
+            direction: rtl !important;
+            text-align: left !important;
+        }
+    }
+    [name="payment_info[customer_phone]"] {
+        direction: rtl !important;
+        text-align: left !important;
+    }
+    .ty-inputmask-bdi {
+        direction: rtl !important;
+        text-align: left !important;
+    }
+
+    @media (max-width: 576px) {
+        .ui-datepicker {
+            left: 0 !important;
+            right: 0 !important;
+        }
+    }
+    /** Fix old-owlcarousel non-adaptive for RTL **/
+    .owl-carousel.owl-theme .owl-controls .owl-buttons {
+        .owl-next:before, .owl-prev:after {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+        .owl-next i, .owl-prev i {
+            -webkit-transform: scaleX(-1);
+	        transform: scaleX(-1);
+
+	        &:before {
+		        margin: 0 !important;
+	        }
+        }
+    }
+    .owl-theme .owl-controls-outside .owl-buttons {
+        .owl-next, .owl-prev, .owl-next i, .owl-prev i {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+    }
+    .owl-carousel .owl-controls:not(.owl-controls-outside) > .owl-buttons > div {
+        &.owl-next i:before{
+            margin-left: 0;
+        }
+        &.owl-prev i:before{
+            margin-right: 2px;
+            margin-left: 0;
+        }
+    }
+    .owl-more-theme .owl-next {
+        i:before{
+            content:"\e020";
+        }
+    }
+    .owl-more-theme .owl-prev {
+        i:before{
+            content:"\e01f";
+        }
+    }
+    .ty-owl-previewer {
+	    .owl-wrapper-outer {
+		    direction: inherit !important;
+		}
+	    .owl-prev:before {
+		    .rotate(180deg);
+		}
+    }
+    .owl-stage-outer {
+        direction: ltr !important;
+    }
+
+    .ut2-social-buttons__inline {
+        .pinterest__wrapper a {
+            display: inline-block;
+            background-position-x: ~"calc(100% - 6px)";
+        }
+    }
+
+    .icon-right-dir {
+		.rotate(180deg);
+    }
+    .ab-vg-product_labels {
+		float: right;
+    }
+    .ut2-pl__feature .ty-control-group span:before,
+    .ut2-pl__feature .ty-control-group em:before,
+    .ut2-gl__feature .ty-control-group span:before,
+    .ut2-gl__feature .ty-control-group em:before,
+    .ty-features-list .ty-control-group span:before,
+    .ty-features-list .ty-control-group em:before {
+		.box-shadow(none);
+    }
+    .flip-clock-divider .flip-clock-label {
+	    left: auto;
+	    right: 50%;
+    }
+
+	.ut2-banner {
+		direction: rtl !important;
+
+		.ut2-a__bg-banner {
+			.ut2-a__content {
+				&.align-left {
+					flex-direction: row;
+
+					&.internal-image {
+						flex-direction: row-reverse;
+					}
+					.width-half {
+						.box {
+							text-align: left;
+						}
+					}
+					.width-full {
+						.box {
+							text-align: left;
+						}
+					}
+				}
+
+				&.align-right {
+					flex-direction: row-reverse;
+
+					&.internal-image {
+						flex-direction: row;
+					}
+					.width-half {
+						.box {
+							text-align: left;
+						}
+					}
+					.width-full {
+						.box {
+							text-align: left;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.ut2-lfl > i:before, .ut2-lsl > i:before {
+    	content: "\e909";
+	}
+	&.touchevents .ut2-lfl.active > i:before, &.touchevents .ut2-lsl.active > i:before {
+        -webkit-transform: rotate(180deg);
+    	transform: rotate(180deg);
+	}
+
+    input.cm-mask-phone {
+        direction: initial;
+        text-align: right;
+    }
+
+    a[href^="tel:"] {
+        direction: initial;
+        display: block;
+    }
+
+    @media (max-width: 1023px) {
+        .ut2-menu-vetrtical .menu-lvl-ctn:before {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+    }
+}
