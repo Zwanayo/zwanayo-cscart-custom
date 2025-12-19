@@ -25,3 +25,30 @@ attachments/
 Thumbs.db
 .idea/
 .vscode/
+
+# --- CS-Cart runtime / secrets (safety net) ---
+config.local.php
+**/config.local.php
+.env
+**/.env
+var/
+**/var/
+cache/
+**/cache/
+logs/
+**/logs/
+*.log
+**/*.log
+
+# Uploads / generated assets
+images/
+files/
+attachments/
+**/images/
+**/files/
+**/attachments/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
