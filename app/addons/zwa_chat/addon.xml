@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon
+    scheme="2.0"
+    edition_type="ROOT,MVE:STOREFRONT,ULT:STOREFRONT"
+>
+    <id>zwa_chat</id>
+    <version>1.0</version>
+    <default_language>en</default_language>
+    <name>ZwaChat</name>
+    <description>WhatsApp Business integration for ZwaChat</description>
+    <developer>Zwanayo</developer>
+    <priority>2000</priority>
+
+    <settings layout="popup">
+        <sections>
+            <!-- General settings section -->
+            <section id="general" name="General">
+                <items>
+                    <item id="verify_token">
+                        <name>Webhook Verify Token</name>
+                        <description>Token used by Facebook to verify your webhook subscription</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>10</position>
+                    </item>
+                    <item id="whatsapp_account_id">
+                        <name>WhatsApp Account ID</name>
+                        <description>Your WhatsApp Business Phone Number ID from Meta Developers</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>20</position>
+                    </item>
+                    <item id="whatsapp_phone_id">
+                        <name>WhatsApp Phone Number ID</name>
+                        <description>Your WhatsApp Business Phone Number ID (Phone Number ID)</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>25</position>
+                    </item>
+                    <item id="whatsapp_access_token">
+                        <name>WhatsApp Access Token</name>
+                        <description>Long-lived access token for the WhatsApp Cloud API</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>30</position>
+                    </item>
+                    <item id="whatsapp_app_secret">
+                        <name>WhatsApp App Secret</name>
+                        <description>App Secret for verifying incoming webhook signatures</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>40</position>
+                    </item>
+                    <item id="debug_signature">
+                        <name>Debug signature verification</name>
+                        <description>When enabled, logs raw payload and expected vs. received signatures</description>
+                        <type>checkbox</type>
+                        <default_value>N</default_value>
+                        <position>50</position>
+                    </item>
+                    <item id="zwachat_webhook_url">
+                        <name>ZwaChat Webhook URL</name>
+                        <description>Full URL to your ZwaChat webhook endpoint (e.g. http://your-host/api/webhook)</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>60</position>
+                    </item>
+                    <item id="api_url">
+                        <name>ZwaChat API URL</name>
+                        <description>Full URL to your ZwaChat API endpoint (e.g. https://chat.zwanayo.com/api/zwachat)</description>
+                        <type>input</type>
+                        <default_value>https://chat.zwanayo.com/api/zwachat</default_value>
+                        <position>65</position>
+                    </item>
+                    <item id="api_key">
+                        <name>ZwaChat API Key</name>
+                        <description>Must match ZWACHAT_API_KEY in your Node .env</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>70</position>
+                    </item>
+                    <item id="admin_api_key">
+                        <name>Admin API Key</name>
+                        <description>Must match ZWACHAT_ADMIN_API_KEY in your Node .env / PM2 config</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>72</position>
+                    </item>
+                    <item id="widget_url">
+                        <name>ZwaChat Widget URL</name>
+                        <description>URL loaded in the storefront chat iframe (e.g. /zwa_chat/index.html for live; https://dev.zwanayo.com:4000 for dev).</description>
+                        <type>input</type>
+                        <default_value>/zwa_chat/index.html</default_value>
+                        <position>75</position>
+                    </item>
+                    <item id="openai_api_key">
+                        <name>OpenAI API Key</name>
+                        <description>API key for OpenAI chat completions (e.g. gpt-3.5-turbo)</description>
+                        <type>input</type>
+                        <default_value></default_value>
+                        <position>80</position>
+                    </item>
+                </items>
+            </section>
+
+        </sections>
+    </settings>
+
+    <templates>
+        <directory>views/zwa_chat</directory>
+    </templates>
+
+    <controllers>
+        <frontend>
+            <controller dispatch="zwa_chat.webhook">controllers/frontend/zwa_chat.php</controller>
+            <controller dispatch="zwa_chat.chat_api">controllers/frontend/zwa_chat.php</controller>
+            <controller dispatch="zwa_chat.get_messages">controllers/frontend/zwa_chat.php</controller>
+            <!-- Add this line for customer AJAX -->
+            <controller dispatch="zwa_chat.send_message">controllers/frontend/zwa_chat.php</controller>
+        </frontend>
+        <admin>
+            <controller dispatch="zwa_chat.manage">controllers/backend/zwa_chat.php</controller>
+        </admin>
+    </controllers>
+
+    <permissions>
+        <permission id="manage_zwa_chat">manage_zwa_chat</permission>
+    </permissions>
+
+    <hooks>
+        <hook id="index:head_scripts.post">addons/zwa_chat/hooks/index/head_scripts.post.tpl</hook>
+        <hook id="index:footer.post">addons/zwa_chat/hooks/index/footer.post.tpl</hook>
+    </hooks>
+
+    <assets>
+        <js>
+            <file>js/addons/zwa_chat/init.js</file>
+        </js>
+    </assets>
+
+    <functions>
+        <function>fn_zwa_chat_get_recent_sessions</function>
+    </functions>
+</addon>

@@ -1,0 +1,313 @@
+/*******************************************************************************************
+*   ___  _          ______                     _ _                _                        *
+*  / _ \| |         | ___ \                   | (_)              | |              © 2023   *
+* / /_\ | | _____  _| |_/ /_ __ __ _ _ __   __| |_ _ __   __ _   | |_ ___  __ _ _ __ ___   *
+* |  _  | |/ _ \ \/ / ___ \ '__/ _` | '_ \ / _` | | '_ \ / _` |  | __/ _ \/ _` | '_ ` _ \  *
+* | | | | |  __/>  <| |_/ / | | (_| | | | | (_| | | | | | (_| |  | ||  __/ (_| | | | | | | *
+* \_| |_/_|\___/_/\_\____/|_|  \__,_|_| |_|\__,_|_|_| |_|\__, |  \___\___|\__,_|_| |_| |_| *
+*                                                         __/ |                            *
+*                                                        |___/                             *
+* ---------------------------------------------------------------------------------------- *
+* This is commercial software, only users who have purchased a valid license and accept    *
+* to the terms of the License Agreement can install and use this program.                  *
+* ---------------------------------------------------------------------------------------- *
+* website: https://cs-cart.alexbranding.com                                                *
+*   email: info@alexbranding.com                                                           *
+*******************************************************************************************/
+// Advanced menu Header
+
+@advanced-header-left-col: 260px;
+@advanced-header-height-elements: 56px;
+@advanced-header-width-1lvl-menu: @advanced-header-left-col + 20;
+@advanced-header-right-col: 320px;
+
+.header-grid.advanced-header {
+	.top-logo-grid, .top-phones {
+		width: auto;
+		flex: 0 0 auto;
+		@media (max-width: 320px) {
+			width: 50%;
+		}
+	}
+	.top-header-menu {
+    	margin: 0 @pd;
+    	flex: 1;
+	}
+	.top-phones {
+		display: flex;
+	    align-items: center;
+		justify-content: flex-end;
+		margin-left: 0;
+	}
+	@media (max-width: 780px) {
+		.top-logo-grid {
+			padding: 0;
+		}
+	}
+	// Account and Cart
+	.account-cart-grid {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		width: @advanced-header-right-col;
+		margin-left: 0;
+		float: right;
+
+		i[class^="ut2-icon-"] {
+			position: relative;
+			font-size: 28px;
+			padding-right: 5px;
+
+			&.filled .ty-minicart-count {
+				background: @decorative;
+				color: white;
+			}
+		}
+		@media (max-width: 899px) {
+			width: auto;
+			i[class^="ut2-icon-"] {
+				padding-right: 0;
+			}
+		}
+	}
+}
+.advanced-header {
+	.container-fluid-row:first-child > .row-fluid  {
+		&:before, &:after{
+			display: none;
+		}
+		.header-valign();
+	}
+	.top-left-grid {
+		.xcalc(@advanced-header-right-col);
+
+		@media (max-width: 899px) {
+			.xcalc(100px);
+			float: left;
+		}
+		> .row-fluid {
+        	display: flex;
+        	flex-wrap: wrap;
+
+            > div {
+                flex: 1;
+
+                &.menu-grid {
+                    flex: 0 0 auto;
+                    width: auto;
+					position: relative;
+
+                    @media (max-width: 899px) {
+                        width: auto;
+                    }
+                }
+            }
+		}
+	}
+	.menu-grid {
+		max-width: @advanced-header-left-col;
+	}
+	.ut2-top-my-account, .ut2-top-cart-content {
+    	height: @advanced-header-height-elements;
+
+    	.ty-dropdown-box {
+            &__title {
+				width: 100%;
+            	height: @advanced-header-height-elements;
+				justify-content: center;
+
+				@media (max-width: 899px) {
+					> a > span {
+						display: none;
+					}
+				}
+				&.open ~ .cm-popup-box {
+					&:before, &:after {
+						display: none;
+					}
+				}
+        	}
+        }
+	}
+    .ty-minicart-count {
+        box-shadow: 0 0 0 1px rgba(0,0,0,10%);
+    }
+	// Menu
+	.top-menu-grid {
+		position: relative;
+
+	    .bg_color_1() when (@menu = white) and (@header_bg = white) {
+            border-top: 1px solid @base;
+    	}
+    	.bg_color_1();
+
+		@media (min-width: 900px) {
+			.ty-dropdown-box__title.open {
+				&:after, &:before {
+					content: none;
+				}
+			}
+			.ty-dropdown-box__content {
+				border-radius: 0;
+
+				.ut2_rounding_blocks_enable() when (@abt__ut2_general_use_rounding_blocks = true) {
+					.ut2_round(@round: 0 0 8px 8px) when (@abt__ut2_general_use_rounding = little) {
+						border-radius: @round;
+					}
+					.ut2_round(@round: 0 0 12px 12px) when (@abt__ut2_general_use_rounding = full) {
+						border-radius: @round;
+					}
+					.ut2_round();
+				}
+				.ut2_rounding_blocks_enable();
+			}
+		}
+	}
+	.top-menu-grid-vetrtical {
+		width: 100%;
+
+		> .ty-dropdown-box__title[id] {
+			background: none;
+			border: 0 none;
+			padding: 0 @pd;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			height: @advanced-header-height-elements;
+			border-radius: 0;
+			@media (min-width: 900px) {
+				padding-left: 5px;
+			}
+			.header_delimiters() when (@abt__ut2_containers_header_add_delimiters = true) {
+				.header_delimiters_color() when not (iscolor(@abt__ut2_containers_header_use_color_menu_on_hover)) {
+					border-left: 1px solid rgba(0,0,0,0.2);
+				}
+				.header_delimiters_color() when (iscolor(@abt__ut2_containers_header_use_color_menu_on_hover)) {
+					border-left: 1px solid @abt__ut2_containers_header_use_color_menu_on_hover;
+				}
+				.header_delimiters_color();
+			}
+			.header_delimiters();
+
+			> i {
+				font-size: 28px;
+				.color-header-icons() when (iscolor(@abt__ut2_containers_header_use_color_icons)) {
+					color: @abt__ut2_containers_header_use_color_icons;
+				}
+				.color-header-icons();
+
+				&:before {
+					content: "\e976";
+				}
+			}
+			> span {
+				font-family: @headings_font;
+				font-size: 18px;
+				line-height: 16px;
+				font-weight: @headings_font_weight;
+				letter-spacing: @heading_letter-spacing;
+				color: @menu_links;
+				white-space: pre-wrap;
+
+				.uppercase() when (@abt__ut2_general_use_titles_uppercase = true) {
+					font-size: 15px;
+					text-transform: uppercase;
+				}
+				.uppercase();
+			}
+			&:hover, &.open {
+				.general_header_active_color() when not (iscolor(@abt__ut2_containers_header_use_color_menu_on_hover)) {
+					background: rgba(0,0,0,0.2);
+				}
+				.general_header_active_color() when (iscolor(@abt__ut2_containers_header_use_color_menu_on_hover)) {
+					background: @abt__ut2_containers_header_use_color_menu_on_hover;
+				}
+				.general_header_active_color();
+			}
+			@media (max-width: 899px) {
+				justify-content: center;
+				width: 56px;
+				border-left: 0 none;
+
+				.header_delimiters() when (@abt__ut2_containers_header_add_delimiters = true) {
+					.header_delimiters_color() when not (iscolor(@abt__ut2_containers_header_use_color_elements_on_hover)) {
+						border-right: 1px solid rgba(0,0,0,0.2);
+					}
+					.header_delimiters_color() when (iscolor(@abt__ut2_containers_header_use_color_elements_on_hover)) {
+						border-right: 1px solid @abt__ut2_containers_header_use_color_elements_on_hover;
+					}
+					.header_delimiters_color();
+				}
+				.header_delimiters();
+
+				& > span {
+					font-size: 0;
+
+					&:after {
+						display: none;
+					}
+				}
+				& > i {
+					position: inherit;
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	// Search
+	.search-grid {
+		float: right;
+		margin-left: @pdi;
+		margin-right: @pdi;
+
+		@media (max-width: 899px) {
+			margin: 0 5px;
+        }
+	    .top-search {
+			margin-top: 8px;
+			margin-bottom: 8px;
+	    }
+	    input[type=text] {
+			&.ty-search-block__input {
+				display: inline-flex;
+				border: 1px solid transparent;
+				background: fade(@general_bg_color, 85%);
+				height: 40px;
+				font-size: var(--font-size-medium);
+				padding-left: @pdi;
+			    text-overflow: ellipsis;
+			    overflow: hidden;
+			    padding-right: 40px;
+				border-radius: var(--border-radius);
+
+				&:hover {
+					background: lighten(@content_bg, 15%);
+					box-shadow: 0 0 5px darken(@menu, 15%);
+				}
+
+				.bg_color() when (lightness(@menu) >= 100%) {
+					background: @base;
+					&:hover, &:focus {
+						background: lighten(@content_bg, 15%);
+						border: 1px solid @base5;
+					}
+				}
+				.bg_color();
+
+				+ .ty-search-magnifier {
+                	font-size: 18px;
+                	line-height: 14px;
+                	color: @lighten-font;
+
+                	&:hover {
+                    	background: none;
+                    	transform: scale(1.1);
+                    	transition: transform 400ms cubic-bezier(0.25,0.8,0.25,1), color 400ms cubic-bezier(0.25,0.8,0.25,1);
+                    	color: @links;
+                	}
+            	}
+			}
+		}
+	}
+}

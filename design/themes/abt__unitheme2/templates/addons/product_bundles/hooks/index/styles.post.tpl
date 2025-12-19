@@ -1,0 +1,1 @@
+{style src="addons/product_bundles/abt__ut2_styles.less"}

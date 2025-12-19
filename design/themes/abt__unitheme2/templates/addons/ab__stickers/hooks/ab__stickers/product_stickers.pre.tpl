@@ -1,0 +1,1 @@
+<input type="hidden" name="ab__stickers_output_side" value="{$addons.ab__stickers.output_position}">
