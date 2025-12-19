@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>zwanayo_mobile</id>
+    <version>1.0.0</version>
+    <priority>500</priority>
+    <default_language>en</default_language>
+    <languages>
+        <item>en</item>
+        <item>fr</item>
+    </languages>
+    <name>Zwanayo Mobile API</name>
+    <description>Minimal API endpoints for the Zwanayo mobile app.</description>
+</addon>
