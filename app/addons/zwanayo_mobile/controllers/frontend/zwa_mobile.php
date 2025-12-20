@@ -5,18 +5,24 @@ if (!defined('BOOTSTRAP')) { die('Access denied'); }
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && $mode === 'orders') {
     header('Content-Type: application/json; charset=utf-8');
 
+    $page = isset($_REQUEST['page']) ? max(1, (int) $_REQUEST['page']) : 1;
+    $items_per_page = isset($_REQUEST['items_per_page']) ? (int) $_REQUEST['items_per_page'] : 10;
+    $items_per_page = $items_per_page > 0 ? min($items_per_page, 100) : 10;
+
     if (empty($auth['user_id'])) {
         fn_set_status_header(401);
         fn_echo(json_encode([
             'error' => true,
             'message' => 'Unauthorized',
+            'orders' => [],
+            'pagination' => [
+                'page' => $page,
+                'items_per_page' => $items_per_page,
+                'total_items' => 0,
+            ],
         ]));
         exit;
     }
-
-    $page = isset($_REQUEST['page']) ? max(1, (int) $_REQUEST['page']) : 1;
-    $items_per_page = isset($_REQUEST['items_per_page']) ? (int) $_REQUEST['items_per_page'] : 10;
-    $items_per_page = $items_per_page > 0 ? min($items_per_page, 100) : 10;
 
     $params = [
         'user_id'        => $auth['user_id'],
